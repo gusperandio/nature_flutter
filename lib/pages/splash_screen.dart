@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:natureatoz/screens/home_screen.dart';
+import 'package:natureatoz/pages/home_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:natureatoz/providers/language_provider.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -28,7 +30,6 @@ final Widget brazil = Image.asset(
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
-  
   String selectedItem = 'English';
   String selectedLanguage = 'En-US';
   late AnimationController _controller;
@@ -80,6 +81,14 @@ class _SplashScreenState extends State<SplashScreen>
         overlays: SystemUiOverlay.values);
     _controller.dispose();
     super.dispose();
+  }
+
+  void navigateToHomeScreen(BuildContext context) {
+    context
+        .read<LanguageProvider>()
+        .changeLanguage(newLanguage: selectedLanguage);
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (_) => const HomeScreen()));
   }
 
   @override
@@ -175,9 +184,7 @@ class _SplashScreenState extends State<SplashScreen>
                             backgroundColor: const Color(0xFFFFBD16),
                           ),
                           onPressed: () {
-                            Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                    builder: (_) => const HomeScreen()));
+                            navigateToHomeScreen(context);
                           },
                           child: Text(
                               selectedLanguage == 'En-US' ? 'Start' : 'Iniciar',

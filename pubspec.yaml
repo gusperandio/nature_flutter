@@ -65,6 +65,12 @@ flutter:
     - assets/states.png
     - assets/brazil.png
     - assets/arrow-down.svg
+    - assets/flor.jpg
+    - assets/periodic.jpg
+    - assets/wpp1.png
+    - assets/wpp2.png
+    - assets/wpp3.png
+    - assets/globo.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
