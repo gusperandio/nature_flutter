@@ -58,7 +58,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     _offsetAnimation = Tween<Offset>(
       begin: const Offset(0, 1), // posição inicial (abaixo)
-      end: const Offset(0, -200), // posição final (no topo)
+      end: const Offset(0, -120), // posição final (no topo)
     ).animate(CurvedAnimation(
       parent: _controller,
       curve: Curves.easeInOut, // curva de animação
@@ -115,7 +115,7 @@ class _SplashScreenState extends State<SplashScreen>
                   );
                 },
                 child: Image.asset(
-                  'assets/sebrae.png',
+                  'assets/logo.png',
                   width: 350,
                   height: 350,
                 ),
@@ -195,7 +195,7 @@ class _SplashScreenState extends State<SplashScreen>
                     ],
                   )
                 : const SizedBox(
-                    height: 125,
+                    height: 130,
                   ),
             // DropdownButton
           ],

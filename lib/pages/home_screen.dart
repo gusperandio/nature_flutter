@@ -3,26 +3,16 @@ import 'package:flutter/services.dart';
 import 'package:natureatoz/providers/language_provider.dart';
 import 'package:provider/provider.dart';
 import 'dart:math';
-// class HomeScreen extends StatefulWidget {
-//   const HomeScreen({super.key});
-
-//   @override
-//   State<HomeScreen> createState() => _HomeScreenState();
-// }
-
-// class _HomeScreenState extends State<HomeScreen> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return const Placeholder();
-//   }
-// }
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
+  void stringsTrative() {}
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+
     var rng = Random();
     String wpp = '';
     switch (rng.nextInt(3)) {
@@ -37,7 +27,9 @@ class HomeScreen extends StatelessWidget {
         break;
     }
 
-    final language = context.watch<LanguageProvider>().language;
+    final language = context.watch<LanguageProvider>().language == "En-US";
+    final _texts = getLocalizedTexts(language);
+
     return Scaffold(
       body: Column(
         children: [
@@ -72,9 +64,7 @@ class HomeScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            language == 'En-US'
-                                ? 'Welcome to Nature A to Z'
-                                : 'Bem-vindo a Nature de A a Z',
+                            _texts['title']!,
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 24,
@@ -83,9 +73,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            language == 'En-US'
-                                ? "Your ultimate guide to everything from the wonders of 'A' to the mysteries of 'Z' in the environment!"
-                                : "Seu guia definitivo para tudo, desde as maravilhas do 'A' até os mistérios do 'Z' no ambiente!",
+                            _texts['subTitle']!,
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 12,
@@ -97,8 +85,177 @@ class HomeScreen extends StatelessWidget {
               ),
             ],
           ),
+          const SizedBox(height: 20),
+          Center(
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Container(
+                  width: 100,
+                  height: 100,
+                  decoration: BoxDecoration(
+                      color: const Color(0xFFF2CB05),
+                      borderRadius: BorderRadius.circular(16)),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 8),
+                      const Icon(
+                        Icons.import_contacts,
+                        size: 40,
+                      ),
+                      Text(_texts['card1']!,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: Color(0xFF222222),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          )),
+                    ],
+                  ),
+                ),
+                Container(
+                  width: 100,
+                  height: 100,
+                  decoration: BoxDecoration(
+                      color: const Color(0xFFF29F05),
+                      borderRadius: BorderRadius.circular(16)),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 8),
+                      const Icon(
+                        Icons.nature_people,
+                        size: 40,
+                      ),
+                      Text(_texts['card2']!,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: Color(0xFF222222),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          )),
+                    ],
+                  ),
+                ),
+                Container(
+                  width: 100,
+                  height: 100,
+                  decoration: BoxDecoration(
+                      color: const Color(0xFFF28705),
+                      borderRadius: BorderRadius.circular(16)),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 8),
+                      const Icon(
+                        Icons.wallpaper,
+                        size: 40,
+                      ),
+                      Text(_texts['card3']!,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: Color(0xFF222222),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          )),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 20),
+          Center(
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Container(
+                  width: 100,
+                  height: 200,
+                  decoration: BoxDecoration(
+                      color: const Color(0xFFF2CB05),
+                      borderRadius: BorderRadius.circular(16)),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 8),
+                      const Icon(
+                        Icons.import_contacts,
+                        size: 40,
+                      ),
+                      Text(_texts['card1']!,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: Color(0xFF222222),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          )),
+                    ],
+                  ),
+                ),
+                Container(
+                  width: 100,
+                  height: 200,
+                  decoration: BoxDecoration(
+                      color: const Color(0xFFF29F05),
+                      borderRadius: BorderRadius.circular(16)),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 8),
+                      const Icon(
+                        Icons.nature_people,
+                        size: 40,
+                      ),
+                      Text(_texts['card2']!,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: Color(0xFF222222),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          )),
+                    ],
+                  ),
+                ),
+                Container(
+                  width: 100,
+                  height: 200,
+                  decoration: BoxDecoration(
+                      color: const Color(0xFFF28705),
+                      borderRadius: BorderRadius.circular(16)),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 8),
+                      const Icon(
+                        Icons.wallpaper,
+                        size: 40,
+                      ),
+                      Text(_texts['card3']!,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: Color(0xFF222222),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          )),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
+  }
+
+  Map<String, String> getLocalizedTexts(bool language) {
+    return {
+      'title':
+          language ? "Welcome to Nature A to Z" : "Bem-vindo a Nature de A a Z",
+      'subTitle': language
+          ? "Your ultimate guide to everything from the wonders of 'A' to the mysteries of 'Z' in the environment!"
+          : "Seu guia definitivo para tudo, desde as maravilhas do 'A' até os mistérios do 'Z' no ambiente!",
+      'card1': language ? "+ 3K \nITEMS" : "+ 3Mil \nITEMS",
+      'card2': language ? "Over 5 \nBIOMES" : "Mais de 5\n BIOMAS",
+      'card3': language ? "+ 150 \nIMAGES" : "+ 150 \nIMAGENS",
+    };
   }
 }
