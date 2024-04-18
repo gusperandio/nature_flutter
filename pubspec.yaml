@@ -71,6 +71,9 @@ flutter:
     - assets/wpp2.png
     - assets/wpp3.png
     - assets/globo.jpg
+    - assets/atoz.jpg
+    - assets/frog.jpg
+    - assets/dices.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
