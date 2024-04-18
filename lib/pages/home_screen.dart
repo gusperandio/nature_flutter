@@ -7,8 +7,6 @@ import 'dart:math';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  void stringsTrative() {}
-
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
@@ -32,8 +30,8 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
         body: Container(
-      color: const Color(0xFFE6EFF8),
-      child: Column(
+      color: const Color(0xFFF2F2F2),
+      child:  Column(
         children: [
           Stack(
             children: [
@@ -97,7 +95,7 @@ class HomeScreen extends StatelessWidget {
                   width: 100,
                   height: 100,
                   decoration: BoxDecoration(
-                      color: const Color(0xFFF2CB05),
+                      color: const Color.fromARGB(137, 242, 203, 5),
                       borderRadius: BorderRadius.circular(12)),
                   child: Column(
                     children: [
@@ -120,7 +118,7 @@ class HomeScreen extends StatelessWidget {
                   width: 100,
                   height: 100,
                   decoration: BoxDecoration(
-                      color: const Color(0xFFF29F05),
+                      color: Color.fromARGB(133, 242, 159, 5),
                       borderRadius: BorderRadius.circular(12)),
                   child: Column(
                     children: [
@@ -143,7 +141,7 @@ class HomeScreen extends StatelessWidget {
                   width: 100,
                   height: 100,
                   decoration: BoxDecoration(
-                      color: const Color(0xFFF28705),
+                      color: Color.fromARGB(181, 242, 135, 5),
                       borderRadius: BorderRadius.circular(12)),
                   child: Column(
                     children: [
@@ -166,7 +164,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.fromLTRB(30.0, 12.0, 12.0, 10.0),
+            padding: const EdgeInsets.fromLTRB(30.0, 12.0, 12.0, 10.0),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(

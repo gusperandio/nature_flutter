@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:natureatoz/pages/home_screen.dart';
+import 'package:natureatoz/pages/main_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:natureatoz/providers/language_provider.dart';
 import 'package:provider/provider.dart';
@@ -46,22 +46,21 @@ class _SplashScreenState extends State<SplashScreen>
     );
 
     _fadeAnimation = Tween<double>(
-      begin: 0.0, // completamente transparente
-      end: 1.0, // totalmente visível
+      begin: 0.0,
+      end: 1.0,
     ).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Curves
-            .easeInOut, // inicia o fade-in antes da animação de deslocamento
+        curve: Curves.easeInOut,
       ),
     );
 
     _offsetAnimation = Tween<Offset>(
-      begin: const Offset(0, 1), // posição inicial (abaixo)
-      end: const Offset(0, -120), // posição final (no topo)
+      begin: const Offset(0, 1),
+      end: const Offset(0, -120),
     ).animate(CurvedAnimation(
       parent: _controller,
-      curve: Curves.easeInOut, // curva de animação
+      curve: Curves.easeInOut,
     ));
 
     _controller.forward();
@@ -88,7 +87,7 @@ class _SplashScreenState extends State<SplashScreen>
         .read<LanguageProvider>()
         .changeLanguage(newLanguage: selectedLanguage);
     Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (_) => const HomeScreen()));
+        .pushReplacement(MaterialPageRoute(builder: (_) => MainScreen()));
   }
 
   @override
