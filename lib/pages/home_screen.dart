@@ -4,9 +4,12 @@ import 'package:natureatoz/providers/language_provider.dart';
 import 'package:provider/provider.dart';
 import 'dart:math';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
 
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
@@ -15,23 +18,24 @@ class HomeScreen extends StatelessWidget {
     String wpp = '';
     switch (rng.nextInt(3)) {
       case 0:
-        wpp = 'assets/wpp1.png';
+        wpp = 'assets/sebrae.png';
         break;
       case 1:
-        wpp = 'assets/wpp2.png';
+        wpp = 'assets/sebrae.png';
         break;
       default:
-        wpp = 'assets/wpp3.png';
+        wpp = 'assets/sebrae.png';
         break;
     }
 
     final language = context.watch<LanguageProvider>().language == "En-US";
     final _texts = getLocalizedTexts(language);
 
-    return Scaffold(
-        body: Container(
+    return MaterialApp(
+        home: Scaffold(
+            body: Container(
       color: const Color(0xFFF2F2F2),
-      child:  Column(
+      child: Column(
         children: [
           Stack(
             children: [
@@ -95,7 +99,7 @@ class HomeScreen extends StatelessWidget {
                   width: 100,
                   height: 100,
                   decoration: BoxDecoration(
-                      color: const Color.fromARGB(137, 242, 203, 5),
+                      color: Color.fromARGB(255, 242, 203, 5),
                       borderRadius: BorderRadius.circular(12)),
                   child: Column(
                     children: [
@@ -118,7 +122,7 @@ class HomeScreen extends StatelessWidget {
                   width: 100,
                   height: 100,
                   decoration: BoxDecoration(
-                      color: Color.fromARGB(133, 242, 159, 5),
+                      color: Color.fromARGB(255, 242, 159, 5),
                       borderRadius: BorderRadius.circular(12)),
                   child: Column(
                     children: [
@@ -141,7 +145,7 @@ class HomeScreen extends StatelessWidget {
                   width: 100,
                   height: 100,
                   decoration: BoxDecoration(
-                      color: Color.fromARGB(181, 242, 135, 5),
+                      color: Color.fromARGB(255, 242, 135, 5),
                       borderRadius: BorderRadius.circular(12)),
                   child: Column(
                     children: [
@@ -179,13 +183,14 @@ class HomeScreen extends StatelessWidget {
           ),
           Container(
             width: 350,
-            height: 280,
+            height: 240,
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(12)),
             child: Column(
               children: [
                 Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: Row(
                       children: [
                         Container(
@@ -228,7 +233,8 @@ class HomeScreen extends StatelessWidget {
                       ],
                     )),
                 Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: Row(
                       children: [
                         Container(
@@ -271,7 +277,8 @@ class HomeScreen extends StatelessWidget {
                       ],
                     )),
                 Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: Row(
                       children: [
                         Container(
@@ -318,13 +325,14 @@ class HomeScreen extends StatelessWidget {
           )
         ],
       ),
-    ));
+    )));
   }
 
   Map<String, String> getLocalizedTexts(bool language) {
     return {
-      'title':
-          language ? "Welcome to Nature A to Z" : "Bem-vindo a Nature de A a Z",
+      'title': language
+          ? "Welcome to Nature A to Z"
+          : "Bem-vindo a Natureza de A a Z",
       'subTitle': language
           ? "Your ultimate guide to everything from the wonders of 'A' to the mysteries of 'Z' in the environment!"
           : "Seu guia definitivo para tudo, desde as maravilhas do 'A' até os mistérios do 'Z' no ambiente!",

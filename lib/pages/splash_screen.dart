@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:natureatoz/pages/main_screen.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:natureatoz/providers/language_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -11,16 +10,6 @@ class SplashScreen extends StatefulWidget {
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
-
-final String assetName = 'assets/arrow-down.svg';
-final Widget svgIcon = SvgPicture.asset(
-  assetName,
-  semanticsLabel: 'Sua Imagem SVG',
-  placeholderBuilder: (BuildContext context) => Container(
-    padding: const EdgeInsets.all(30.0),
-    child: const CircularProgressIndicator(),
-  ),
-);
 
 final Widget brazil = Image.asset(
   'assets/brazil.png',

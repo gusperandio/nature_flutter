@@ -64,7 +64,6 @@ flutter:
     - assets/sebrae.png
     - assets/states.png
     - assets/brazil.png
-    - assets/arrow-down.svg
     - assets/flor.jpg
     - assets/periodic.jpg
     - assets/wpp1.png
@@ -74,6 +73,15 @@ flutter:
     - assets/atoz.jpg
     - assets/frog.jpg
     - assets/dices.jpg
+    - assets/svg/arrow-down.svg
+    - assets/svg/arrow.svg
+    - assets/svg/home_active.svg
+    - assets/svg/home.svg
+    - assets/svg/like_active.svg
+    - assets/svg/like.svg
+    - assets/svg/search_active.svg
+    - assets/svg/search.svg
+    - assets/svg/heart.svg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

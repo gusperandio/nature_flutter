@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:natureatoz/pages/home_screen.dart';
 import 'package:natureatoz/pages/search_screen.dart';
 import 'package:natureatoz/pages/like_screen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -13,7 +14,7 @@ class Page1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const HomeScreen();
+    return HomeScreen();
   }
 }
 
@@ -39,9 +40,9 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
   static final List<Widget> _widgetOptions = <Widget>[
-    Page1(),
-    Page2(),
-    Page3(),
+    const Page1(),
+    const Page2(),
+    const Page3(),
   ];
 
   void _onItemTapped(int index) {
@@ -50,7 +51,9 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
-  Widget _buildBarItem(IconData icon, int index) {
+  Widget _buildBarItem(String activeIcon, String inactiveIcon, int index, double size) {
+
+
     return GestureDetector(
       onTap: () {
         _onItemTapped(index);
@@ -60,29 +63,13 @@ class _MainScreenState extends State<MainScreen> {
         children: [
           Stack(
             children: [
-              if (_selectedIndex == index)
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  child: Container(
-                    width: 10,
-                    height: 10,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Color(0xFFf28705),
-                    ),
-                  ),
-                ),
-              Icon(
-                size: 32,
-                icon,
-                color: _selectedIndex == index
-                    ? const Color(0xFF222222)
-                    : Colors.grey,
+              SvgPicture.asset(
+                _selectedIndex == index ? activeIcon : inactiveIcon,
+                height: size,
+                width: size,
               ),
             ],
           ),
-          const SizedBox(height: 4),
         ],
       ),
     );
@@ -91,21 +78,35 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: 
-      _widgetOptions.elementAt(_selectedIndex),
+      body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: SizedBox(
-        height: 70,
-        child: BottomAppBar(
-        color: Colors.white,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            _buildBarItem(Icons.home, 0),
-            _buildBarItem(Icons.search, 1),
-            _buildBarItem(Icons.favorite, 2),
-          ],
-        ),
-      )),
+          height: 80,
+          child: BottomAppBar(
+            color: Colors.white,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                _buildBarItem(
+                  'assets/svg/home_active.svg',
+                  'assets/svg/home.svg',
+                  0,
+                  28
+                ),
+                _buildBarItem(
+                  'assets/svg/search_active.svg',
+                  'assets/svg/search.svg',
+                  1,
+                  52
+                ),
+                _buildBarItem(
+                  'assets/svg/like_active.svg',
+                  'assets/svg/like.svg',
+                  2,
+                  24
+                ),
+              ],
+            ),
+          )),
     );
   }
 }
