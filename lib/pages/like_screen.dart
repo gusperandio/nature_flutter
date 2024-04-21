@@ -65,7 +65,7 @@ class _LikeScreenState extends State<LikeScreen> {
         color: const Color(0xFFF2F2F2),
         child: Column(
           children: [
-            const SizedBox(height: 25),
+            const SizedBox(height: 30),
             Expanded(
                 child: ListView.builder(
               itemCount: items.length,

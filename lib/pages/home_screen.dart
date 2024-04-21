@@ -122,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: 100,
                   height: 100,
                   decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 242, 159, 5),
+                      color: const Color.fromARGB(255, 242, 159, 5),
                       borderRadius: BorderRadius.circular(12)),
                   child: Column(
                     children: [
@@ -145,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: 100,
                   height: 100,
                   decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 242, 135, 5),
+                      color: const Color.fromARGB(255, 242, 135, 5),
                       borderRadius: BorderRadius.circular(12)),
                   child: Column(
                     children: [
@@ -191,47 +191,49 @@ class _HomeScreenState extends State<HomeScreen> {
                 Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 60,
-                          height: 60,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: Colors.grey,
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Image.asset(
-                              'assets/dices.jpg',
-                              fit: BoxFit.cover,
+                    child: GestureDetector(
+                        onTap: () {},
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 60,
+                              height: 60,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                color: Colors.grey,
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: Image.asset(
+                                  'assets/dices.jpg',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                _texts['exTitle1']!,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                ),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    _texts['exTitle1']!,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  Text(
+                                    _texts['exSubTitle1']!,
+                                    style: const TextStyle(
+                                      color: Colors.black54,
+                                      fontSize: 10,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                _texts['exSubTitle1']!,
-                                style: const TextStyle(
-                                  color: Colors.black54,
-                                  fontSize: 10,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    )),
+                            ),
+                          ],
+                        ))),
                 Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
