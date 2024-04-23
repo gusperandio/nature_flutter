@@ -82,6 +82,8 @@ flutter:
     - assets/svg/search_active.svg
     - assets/svg/search.svg
     - assets/svg/heart.svg
+    - assets/svg/minimize.svg
+    - assets/svg/refresh.svg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
