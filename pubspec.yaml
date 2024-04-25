@@ -74,6 +74,7 @@ flutter:
     - assets/frog.jpg
     - assets/dices.jpg
     - assets/svg/arrow-down.svg
+    - assets/svg/arrow-left.svg
     - assets/svg/arrow.svg
     - assets/svg/home_active.svg
     - assets/svg/home.svg

@@ -18,13 +18,13 @@ class _HomeScreenState extends State<HomeScreen> {
     String wpp = '';
     switch (rng.nextInt(3)) {
       case 0:
-        wpp = 'assets/sebrae.png';
+        wpp = 'assets/wpp1.png';
         break;
       case 1:
-        wpp = 'assets/sebrae.png';
+        wpp = 'assets/wpp2.png';
         break;
       default:
-        wpp = 'assets/sebrae.png';
+        wpp = 'assets/wpp3.png';
         break;
     }
 

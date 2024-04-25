@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:natureatoz/components/button.dart';
 import 'package:natureatoz/pages/main_screen.dart';
 import 'package:natureatoz/providers/language_provider.dart';
 import 'package:provider/provider.dart';
@@ -164,22 +165,12 @@ class _SplashScreenState extends State<SplashScreen>
                             }).toList(),
                           )),
                       const SizedBox(height: 16),
-                      FilledButton(
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            backgroundColor: const Color(0xFFFFBD16),
-                          ),
-                          onPressed: () {
-                            navigateToHomeScreen(context);
-                          },
-                          child: Text(
-                              selectedLanguage == 'En-US' ? 'Start' : 'Iniciar',
-                              style: const TextStyle(
-                                fontSize: 16,
-                                color: Colors.black,
-                              ))),
+                      ButtonSunshine(
+                        text: selectedLanguage == 'En-US' ? 'Start' : 'Iniciar',
+                        onPressed: () {
+                          navigateToHomeScreen(context);
+                        },
+                      )
                     ],
                   )
                 : const SizedBox(
