@@ -123,7 +123,7 @@ class SearchScreen extends StatelessWidget {
                       child: Stack(children: [
                         Container(
                           width: MediaQuery.of(context).size.width,
-                          height: 120,
+                          height: 180,
                           decoration: BoxDecoration(
                               color: Colors.red,
                               borderRadius: BorderRadius.circular(20),
