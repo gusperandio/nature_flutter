@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -50,13 +52,14 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => MultiItensScreen()),
+                                    builder: (context) =>
+                                        MultiItensScreen(letter: letter)),
                               );
                             },
                           )));
                 },
               ),
-            )
+            ),
           ])),
     ));
   }

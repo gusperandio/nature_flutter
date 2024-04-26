@@ -52,7 +52,7 @@ class _LikeScreenState extends State<LikeScreen> {
         title: 'Transformação',
         description: 'Uma magia que altera a forma de um objeto ou criatura.',
         image:
-            'https://cdn.dribbble.com/userupload/11756274/file/original-befeab021275dfb116ec67a253b64edc.png?resize=200x200'),
+             'https://cdn.dribbble.com/userupload/11756274/file/original-befeab021275dfb116ec67a253b64edc.png?resize=200x200'),     
   ];
 
   @override
