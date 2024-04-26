@@ -54,31 +54,31 @@ class AccordionSunshine extends StatelessWidget {
                     if (item.image != null && item.image != "")
                       OutlinedButton.icon(
                         onPressed: () {
-                          // Responder ao clique do botão
+                        
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.remove_red_eye,
                           size: 18,
                           color: Color(0xFF222222),
                         ),
-                        label: Text(
+                        label: const Text(
                           "Visualizar",
                           style: contentButton,
                         ),
                       )
                     else
-                      OutlinedButton.icon(
+                      IconButton.filled(
                         onPressed: () {
-                          // Responder ao clique do botão
+                         
                         },
-                        icon: Icon(
-                          Icons.add_circle,
+                        icon: const Icon(
+                          Icons.favorite,
                           size: 18,
-                          color: Color(0xFF222222),
+                          color: Color(0xFFf23030),
                         ),
-                        label: Text(
-                          "Adicionar",
-                          style: contentButton,
+                        style: const ButtonStyle(
+                          backgroundColor: MaterialStatePropertyAll<Color>(
+                              Color.fromARGB(255, 235, 235, 235)),
                         ),
                       ),
                   ],

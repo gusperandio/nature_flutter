@@ -147,6 +147,7 @@ class _SplashScreenState extends State<SplashScreen>
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
                                       value,
