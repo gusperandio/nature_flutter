@@ -34,6 +34,8 @@ dependencies:
   provider: ^6.1.2
   flutter_svg: ^0.22.0
   accordion: ^2.6.0
+  url_launcher: ^6.0.0
+  fluttertoast: ^8.2.5
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
@@ -62,7 +64,6 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/logo.png
-    - assets/sebrae.png
     - assets/states.png
     - assets/brazil.png
     - assets/flor.jpg
@@ -87,6 +88,11 @@ flutter:
     - assets/svg/minimize.svg
     - assets/svg/refresh.svg
     - assets/svg/undraw_empty.svg
+    - assets/svg/text-wrap.svg
+    - assets/svg/google.svg
+    - assets/svg/wiki.svg
+    - assets/svg/notFind.svg
+    - assets/support.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

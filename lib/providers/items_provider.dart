@@ -2,17 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:natureatoz/models/item.dart';
 
 class ItemsProvider extends ChangeNotifier {
-  List<Item> _items = [];
+  List<Item> items = [];
 
-  List<Item> get items => _items;
+  ItemsProvider({
+    List<Item>? initialItems,
+  }) {
+    if (initialItems != null) {
+      items.addAll(initialItems);
+    }
+  }
 
-  void addItem({required Item item}) async {
-    _items.add(item);
+  void addItem({required Item item}) {
+    items.add(item);
     notifyListeners();
   }
 
-  void removeItem({required Item item}) async {
-    _items.remove(item);
+  void removeItem({required Item item}) {
+    items.remove(item);
     notifyListeners();
   }
 }

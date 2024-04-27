@@ -27,5 +27,15 @@ class Item {
     };
   }
   
-  
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Item &&
+          other.title == title &&
+          other.description == description &&
+          other.image == image;
+
+  @override
+  int get hashCode =>
+      title.hashCode ^ description.hashCode ^ image.hashCode;
 }

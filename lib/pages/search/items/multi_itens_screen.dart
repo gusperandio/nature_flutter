@@ -3,8 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:natureatoz/components/accordion.dart';
 import 'package:natureatoz/components/button.dart';
+import 'package:natureatoz/components/toast.dart';
 import 'package:natureatoz/models/item.dart';
 import 'package:natureatoz/controllers/dictionary.dart';
+import 'package:natureatoz/providers/items_provider.dart';
+import 'package:natureatoz/providers/language_provider.dart';
+import 'package:provider/provider.dart';
 
 class MultiItensScreen extends StatefulWidget {
   final String letter;
@@ -33,7 +37,9 @@ class _MultiItensScreenState extends State<MultiItensScreen> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-
+     final language = context.watch<LanguageProvider>().language == "En-US";
+    final _texts = getLocalizedTexts(language);
+    final listProvider = context.watch<ItemsProvider>().items;
     return MaterialApp(
         home: Scaffold(
             body: Container(
@@ -85,12 +91,36 @@ class _MultiItensScreenState extends State<MultiItensScreen> {
                             return Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 32),
-                                child: AccordionSunshine(item: items[index]));
+                                child: AccordionSunshine(
+                                  item: items[index],
+                                  fav: listProvider.contains(items[index]),
+                                  onFavoritePressed: () {
+                                    final isFavorite =
+                                        listProvider.contains(items[index]);
+                                    if (isFavorite) {
+                                      listProvider.remove(
+                                          items[index]); 
+                                          CustomToast.show('${items[index].title} ${_texts['toastRemove']}');
+                                    } else {
+                                      listProvider.add(
+                                          items[index]); 
+                                          CustomToast.show('${items[index].title} ${_texts['toastAdd']}');
+                                    }
+                                  },
+                                ));
                           },
                         );
                       }
                     },
                   ))
                 ]))));
+  }
+
+  Map<String, String> getLocalizedTexts(bool language) {
+    return {
+      'toastRemove':
+          language ? "removed from favorites" : "removido dos favoritos",
+      'toastAdd': language ? "added to favorites" : "adicionado aos favoritos",
+    };
   }
 }

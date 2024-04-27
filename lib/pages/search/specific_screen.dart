@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:natureatoz/components/accordion.dart';
+import 'package:natureatoz/components/toast.dart';
 import 'package:natureatoz/controllers/specific.dart';
 import 'package:natureatoz/models/item.dart';
+import 'package:natureatoz/providers/items_provider.dart';
+import 'package:natureatoz/providers/language_provider.dart';
+import 'package:provider/provider.dart';
 
 class SpecificScreen extends StatefulWidget {
   @override
@@ -12,7 +16,6 @@ class SpecificScreen extends StatefulWidget {
 
 class _SpecificScreenState extends State<SpecificScreen> {
   late Future<List<Item>>? _futureItems;
-  List<Item> list = [];
   TextEditingController _searchController = TextEditingController();
 
   @override
@@ -23,6 +26,9 @@ class _SpecificScreenState extends State<SpecificScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final language = context.watch<LanguageProvider>().language == "En-US";
+    final _texts = getLocalizedTexts(language);
+    final listProvider = context.watch<ItemsProvider>().items;
     return MaterialApp(
         home: Scaffold(
             body: Container(
@@ -33,17 +39,31 @@ class _SpecificScreenState extends State<SpecificScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const SizedBox(height: 65),
-          Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-            const SizedBox(width: 12),
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             GestureDetector(
                 onTap: () {
                   Navigator.pop(context);
                 },
-                child: SvgPicture.asset(
-                  'assets/svg/arrow-left.svg',
-                  height: 26,
-                  width: 32,
-                ))
+                child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: SvgPicture.asset(
+                      'assets/svg/arrow-left.svg',
+                      height: 26,
+                      width: 32,
+                    ))),
+            GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _futureItems = null;
+                  });
+                },
+                child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: SvgPicture.asset(
+                      'assets/svg/text-wrap.svg',
+                      height: 26,
+                      width: 32,
+                    ))),
           ]),
           Padding(
               padding: const EdgeInsets.all(16),
@@ -63,8 +83,7 @@ class _SpecificScreenState extends State<SpecificScreen> {
                       builder: (BuildContext context) {
                         return AlertDialog(
                           title: const Text('Aviso'),
-                          content: const Text(
-                              'As pesquisas devem ser feitas acima de 2 caracteres'),
+                          content: Text(_texts['validation']!),
                           actions: <Widget>[
                             TextButton(
                               onPressed: () => Navigator.pop(context, 'OK'),
@@ -83,13 +102,12 @@ class _SpecificScreenState extends State<SpecificScreen> {
                     onPressed: () {
                       _searchController.clear();
                       setState(() {
-                        _futureItems = null;
                         FocusScope.of(context).unfocus();
                       });
                     },
                   ),
-                  labelText: 'Pesquisar',
-                  helperText: 'Busca pelo título',
+                  labelText: _texts['search']!,
+                  helperText: _texts['subtitle']!,
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12)),
                 ),
@@ -116,7 +134,33 @@ class _SpecificScreenState extends State<SpecificScreen> {
                                 ],
                               ));
                         } else if (snapshot.hasError) {
-                          return Text('Error ${snapshot.error}');
+                          return GestureDetector(
+                              onTap: () {
+                                FocusScope.of(context).unfocus();
+                              },
+                              child: Container(
+                                  height: 200,
+                                  width: double.infinity,
+                                  child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        SvgPicture.asset(
+                                          'assets/svg/notFind.svg',
+                                          height: 120,
+                                          width: 120,
+                                        ),
+                                        const SizedBox(height: 12),
+                                        Text(
+                                          _texts['error']!,
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w300,
+                                              color: Color(0xFF222222)),
+                                        )
+                                      ])));
                         } else {
                           List<Item> items = snapshot.data!;
 
@@ -126,7 +170,24 @@ class _SpecificScreenState extends State<SpecificScreen> {
                               return Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 32),
-                                  child: AccordionSunshine(item: items[index]));
+                                  child: AccordionSunshine(
+                                    item: items[index],
+                                    fav: listProvider.contains(items[index]),
+                                    onFavoritePressed: () {
+                                      // Ajuste aqui
+                                      final isFavorite =
+                                          listProvider.contains(items[index]);
+                                      if (isFavorite) {
+                                        listProvider.remove(items[index]);
+                                        CustomToast.show(
+                                            '${items[index].title} ${_texts['toastRemove']!}');
+                                      } else {
+                                        listProvider.add(items[index]);
+                                        CustomToast.show(
+                                            '${items[index].title} ${_texts['toastAdd']!}');
+                                      }
+                                    },
+                                  ));
                             },
                           );
                         }
@@ -148,10 +209,34 @@ class _SpecificScreenState extends State<SpecificScreen> {
                                   height: 120,
                                   width: 120,
                                 ),
-                                Text('Faça sua pesquisa')
+                                const SizedBox(height: 12),
+                                Text(
+                                  _texts['make']!,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w300,
+                                      color: Color(0xFF222222)),
+                                )
                               ]))))
         ],
       ),
     )));
+  }
+
+  Map<String, String> getLocalizedTexts(bool language) {
+    return {
+      'search': language ? "Search" : "Pesquisar",
+      'subtitle': language ? "Search by title" : "Busque pelo titulo",
+      'make': language ? "Make your search" : "Faça sua pesquisa",
+      'toastRemove':
+          language ? "removed from favorites" : "removido dos favoritos",
+      'toastAdd': language ? "added to favorites" : "adicionado aos favoritos",
+      'validation': language
+          ? "Searches must be longer than 2 characters"
+          : "As pesquisas devem ser feitas acima de 2 caracteres",
+      'error': language
+          ? "We didn't find your search"
+          : "Não encontramos sua pesquisa",
+    };
   }
 }

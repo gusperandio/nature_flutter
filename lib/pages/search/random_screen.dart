@@ -65,7 +65,7 @@ class _ModalRandomState extends State<ModalRandom> {
                               snapshot.hasData && snapshot.data!.image != null
                                   ? NetworkImage(snapshot.data!.image!)
                                       as ImageProvider<Object>
-                                  : const AssetImage('assets/sebrae.png'),
+                                  : const AssetImage('assets/wpp1.png'),
                           fit: BoxFit.cover,
                         ),
                       ),

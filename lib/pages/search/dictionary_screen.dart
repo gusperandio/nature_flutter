@@ -15,7 +15,7 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-
+  
     return MaterialApp(
         home: Scaffold(
       body: Container(
