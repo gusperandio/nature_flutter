@@ -187,6 +187,7 @@ class _SpecificScreenState extends State<SpecificScreen> {
                                             '${items[index].title} ${_texts['toastAdd']!}');
                                       }
                                     },
+                                    language: language,
                                   ));
                             },
                           );

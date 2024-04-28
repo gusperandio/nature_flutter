@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:natureatoz/components/payment.dart';
 import 'package:natureatoz/models/item.dart';
+import 'package:natureatoz/providers/language_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ItemScreen extends StatefulWidget {
@@ -25,7 +27,7 @@ class _ItemScreenState extends State<ItemScreen> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-
+    final language = context.watch<LanguageProvider>().language == "En-US";
     return MaterialApp(
         home: Scaffold(
             body: Container(
@@ -37,8 +39,8 @@ class _ItemScreenState extends State<ItemScreen> {
               Container(
                 height: 350,
                 width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(28),
                     bottomRight: Radius.circular(28),
                   ),
@@ -57,10 +59,15 @@ class _ItemScreenState extends State<ItemScreen> {
                     bottomLeft: Radius.circular(28),
                     bottomRight: Radius.circular(28),
                   ),
-                  child: Image.network(
-                    widget.itemActual.image ?? "",
-                    fit: BoxFit.cover,
-                  ),
+                  child: widget.itemActual.image != null && widget.itemActual.image != ""
+                      ? Image.network(
+                          widget.itemActual.image!,
+                          fit: BoxFit.cover,
+                        )
+                      : Image.asset(
+                          'assets/empty.jpeg',
+                          fit: BoxFit.cover,
+                        ),
                 ),
               ),
               Positioned(
@@ -77,6 +84,17 @@ class _ItemScreenState extends State<ItemScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          if (widget.itemActual.image == null || widget.itemActual.image == "")
+                            Text(
+                              language
+                                  ? "This item doesn't contain an image"
+                                  : "Este item não contém imagem",
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           Text(
                             widget.itemActual.title,
                             style: const TextStyle(
@@ -124,9 +142,7 @@ class _ItemScreenState extends State<ItemScreen> {
               children: [
                 GestureDetector(
                   onTap: () {
-                     _launchURL(
-                              'https://natureatoz.com.br/');
-                       
+                    _launchURL('https://natureatoz.com.br/');
                   },
                   child: Image.asset(
                     'assets/support.png',

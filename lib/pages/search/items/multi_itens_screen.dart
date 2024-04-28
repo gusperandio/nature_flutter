@@ -107,6 +107,7 @@ class _MultiItensScreenState extends State<MultiItensScreen> {
                                           CustomToast.show('${items[index].title} ${_texts['toastAdd']}');
                                     }
                                   },
+                                  language: language,
                                 ));
                           },
                         );

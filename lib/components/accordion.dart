@@ -8,16 +8,17 @@ import 'package:provider/provider.dart';
 
 class AccordionSunshine extends StatefulWidget {
   final Item item;
-   late bool fav;
+  late bool fav;
   final VoidCallback onFavoritePressed;
-  AccordionSunshine({required this.item, required this.fav,required this.onFavoritePressed});
+  final bool language;
+  AccordionSunshine(
+      {required this.item, required this.fav, required this.onFavoritePressed, required this.language});
 
   @override
   _AccordionSunshineState createState() => _AccordionSunshineState();
 }
 
 class _AccordionSunshineState extends State<AccordionSunshine> {
-
   static const headerStyle = TextStyle(
       color: Color(0xFF222222), fontSize: 18, fontWeight: FontWeight.bold);
   static const contentButton = TextStyle(
@@ -25,9 +26,9 @@ class _AccordionSunshineState extends State<AccordionSunshine> {
   static const contentStyle = TextStyle(
       color: Color(0xFF8B8B8B), fontSize: 14, fontWeight: FontWeight.normal);
 
- void _toggleFavorite() {
+  void _toggleFavorite() {
     setState(() {
-       widget.fav = !widget.fav;
+      widget.fav = !widget.fav;
       widget.onFavoritePressed();
     });
   }
@@ -76,14 +77,15 @@ class _AccordionSunshineState extends State<AccordionSunshine> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(widget.item.description, style: contentStyle),
+                Text(widget.item.description.replaceAll("\n", " "),
+                    style: contentStyle),
                 const SizedBox(height: 12),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     IconButton(
                       onPressed: () {
-                         _toggleFavorite();
+                        _toggleFavorite();
                       },
                       icon: icon,
                       style: ButtonStyle(
@@ -107,8 +109,8 @@ class _AccordionSunshineState extends State<AccordionSunshine> {
                           size: 18,
                           color: Color(0xFF222222),
                         ),
-                        label: const Text(
-                          "Visualizar",
+                        label: Text(
+                          widget.language ? "View" : "Visualizar",
                           style: contentButton,
                         ),
                       ),
